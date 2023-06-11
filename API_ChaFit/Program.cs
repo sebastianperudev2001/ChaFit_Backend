@@ -2,10 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Queries.Exercise;
 using Queries.Muscle;
 using Queries.Routine;
+using Queries.RoutineExercise;
+using Queries.Stat;
 using Queries.User;
 using Repository.ExerciseRepository;
 using Repository.MuscleRepository;
+using Repository.RoutineExerciseRepository;
 using Repository.RoutineRepository;
+using Repository.StatRepository;
 using Repository.UserRepository;
 
 namespace API_ChaFit
@@ -47,6 +51,12 @@ namespace API_ChaFit
 
             builder.Services.AddTransient<iRoutineQueries, RoutineQueries>();
             builder.Services.AddTransient<iRoutineRepository, RoutineRepository>();
+
+            builder.Services.AddTransient<iRoutineExerciseQueries, RoutineExerciseQueries>();
+            builder.Services.AddTransient<iRoutineExerciseRepository, RoutineExerciseRepository>();
+
+            builder.Services.AddTransient<iStatQueries, StatQueries>();
+            builder.Services.AddTransient<iStatRepository, StatRepository>();
 
             var app = builder.Build();
 

@@ -16,9 +16,4 @@
     <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="RoutineExercise\" />
-    <Folder Include="Stat\" />
-  </ItemGroup>
-
 </Project>
