@@ -5,6 +5,7 @@ using Queries.Routine;
 using Queries.RoutineExercise;
 using Queries.Stat;
 using Queries.User;
+using Queries.Utils;
 using Repository.ExerciseRepository;
 using Repository.MuscleRepository;
 using Repository.RoutineExerciseRepository;
@@ -54,6 +55,14 @@ namespace API_ChaFit
 
             builder.Services.AddTransient<iStatQueries, StatQueries>();
             builder.Services.AddTransient<iStatRepository, StatRepository>();
+
+            builder.Services.AddTransient<iRoutineByUser, RoutineByUser>();
+            builder.Services.AddTransient<iExeRouteByDate, ExeRouteByDate>();
+            builder.Services.AddTransient<iStatByUserExer, StatByUserExer>();
+
+
+
+
 
             var app = builder.Build();
 

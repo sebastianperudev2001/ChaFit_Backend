@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Queries.Stat;
+using Queries.Utils;
 using Repository.StatRepository;
 
 namespace API_ChaFit.Controllers
@@ -12,12 +13,13 @@ namespace API_ChaFit.Controllers
     {
         private readonly iStatRepository _statRepository;
         private readonly iStatQueries _statQueries;
+        private readonly iStatByUserExer _statUtil;
 
-        public StatController(iStatRepository exerciseRepository, iStatQueries exerciseQueries)
+        public StatController(iStatRepository exerciseRepository, iStatQueries exerciseQueries, iStatByUserExer _stat)
         {
             _statRepository = exerciseRepository;
             _statQueries = exerciseQueries;
-
+            _statUtil = _stat;
         }
 
         [HttpGet]
@@ -59,6 +61,18 @@ namespace API_ChaFit.Controllers
         public async Task<ActionResult> Delete([FromRoute] int id)
         {
             var result = await _statRepository.Delete(id);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("{userId}/{exerciseId}")]
+        public async Task<ActionResult> GetByUserExer([FromRoute] int userId, int exerciseId)
+        {
+            var result = await _statUtil.GetByUserExer(userId, exerciseId) ;
+
+            if (result == null)
+                return NotFound();
+
             return Ok(result);
         }
     }

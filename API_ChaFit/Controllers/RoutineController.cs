@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Model;
 using Queries.Routine;
+using Queries.Utils;
 using Repository.RoutineRepository;
 
 namespace API_ChaFit.Controllers
@@ -13,14 +14,16 @@ namespace API_ChaFit.Controllers
     {
         private readonly iRoutineRepository _routineRepository;
         private readonly iRoutineQueries _routineQueries;
+        private readonly iRoutineByUser _routineByUser;
 
-        public RoutineController(iRoutineRepository exerciseRepository, iRoutineQueries exerciseQueries)
+        public RoutineController(iRoutineRepository exerciseRepository, iRoutineQueries exerciseQueries, iRoutineByUser rou)
         {
             _routineRepository = exerciseRepository;
             _routineQueries = exerciseQueries;
+            _routineByUser = rou;
 
         }
-
+        
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult> GetById([FromRoute] int id)
@@ -32,6 +35,7 @@ namespace API_ChaFit.Controllers
 
             return Ok(result);
         }
+        
 
         [HttpGet]
         public async Task<ActionResult> GetAll()
@@ -62,7 +66,19 @@ namespace API_ChaFit.Controllers
             var result = await _routineRepository.Delete(id);
             return Ok(result);
         }
+          
+        [HttpGet]
+        [Route("user/{user_id}")]
+        public async Task<ActionResult> GetByName([FromRoute] int user_id)
+        {
+            var result = await _routineByUser.GetByName(user_id);
 
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+          
 
 
     }
