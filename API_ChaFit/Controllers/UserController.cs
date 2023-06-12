@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Model;
 using Queries.User;
 using Repository.UserRepository;
@@ -61,6 +62,42 @@ namespace API_ChaFit.Controllers
         {
             var result = await _userRepository.Delete(id);
             return Ok(result);
+        }
+
+        public class LoginModel 
+        {
+            public string email { get; set; }
+            public string password { get; set; }
+
+
+        }
+
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel login)
+        {
+            // Validate loginModel
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Here you can perform your login verification logic
+            // For simplicity, let's assume a hardcoded username and password
+            string email = "sebas@gmail.com";
+            string password = "123";
+
+            if (login.email == email && login.password == password)
+            {
+                // Authentication successful
+                // You can generate and return a JWT token or perform any other desired actions
+                return Ok(new { message = "Authentication successful" });
+            }
+            else
+            {
+                // Authentication failed
+                return Unauthorized(new { message = "Invalid username or password" });
+            }
         }
 
 
