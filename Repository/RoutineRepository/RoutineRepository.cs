@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -27,9 +28,12 @@ namespace Repository.RoutineRepository
             parameters.Add("@Name", routine.routine_name);
             parameters.Add("@User_id", routine.user_id);
 
+
             using (var connection = new SqlConnection(_connectionString))
             {
-                result = await connection.ExecuteAsync("[dbo].[ROUTINE_PROC_CREATE]", parameters, commandType: System.Data.CommandType.StoredProcedure);
+                await connection.ExecuteAsync("[dbo].[ROUTINE_PROC_CREATE]", parameters, commandType: System.Data.CommandType.StoredProcedure);
+                result = await connection.ExecuteScalarAsync<int>("SELECT IDENT_CURRENT('Routine')");
+
             }
 
             return result;
