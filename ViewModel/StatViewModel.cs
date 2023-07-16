@@ -13,7 +13,7 @@ namespace ViewModel
         public int gymRep { get; set; }
         public decimal weight { get; set; }
         public int routineExercise_id { get; set; }
-
+        public DateTime dateWorkout { get; set; }
 
 
     }

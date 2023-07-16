@@ -13,5 +13,6 @@ namespace ViewModel
         public int routineExercise_id { get; set; }
         public DateTime dateWorkout { get; set; }
 
+
     }
 }

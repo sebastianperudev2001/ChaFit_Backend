@@ -26,7 +26,7 @@ namespace Repository.RoutineExerciseRepository
             var parameters = new DynamicParameters();
             parameters.Add("@Routine_id", re.routine_id);
             parameters.Add("@Exercise_id", re.exercise_id);
-            parameters.Add("@Dateworkout", re.dateWorkout);
+            //parameters.Add("@Dateworkout", re.dateWorkout);
 
 
             using (var connection = new SqlConnection(_connectionString))
@@ -56,7 +56,7 @@ namespace Repository.RoutineExerciseRepository
             var parameters = new DynamicParameters();
             parameters.Add("@Id", re.routineExercise_id);
             parameters.Add("@Routine", re.routine_id);
-            parameters.Add("@Date", re.dateWorkout);
+            //parameters.Add("@Date", re.dateWorkout);
 
 
             using (var connection = new SqlConnection(_connectionString))

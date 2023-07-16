@@ -28,6 +28,7 @@ namespace Repository.StatRepository
             parameters.Add("@Rep", stat.gymRep);
             parameters.Add("@Weight", stat.weight);
             parameters.Add("@Id", stat.routineExercise_id);
+            parameters.Add("@dateWorkout", stat.dateWorkout);
 
 
 
@@ -61,6 +62,7 @@ namespace Repository.StatRepository
             parameters.Add("@Rep", stat.gymRep);
             parameters.Add("@Weight", stat.weight);
             parameters.Add("@Exercise_Id", stat.routineExercise_id);
+            parameters.Add("@dateWorkout", stat.dateWorkout);
 
 
             using (var connection = new SqlConnection(_connectionString))
