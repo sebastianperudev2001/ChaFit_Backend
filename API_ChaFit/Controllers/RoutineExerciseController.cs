@@ -15,14 +15,15 @@ namespace API_ChaFit.Controllers
     {
         private readonly iRoutineExerciseRepository _reRepository;
         private readonly iRoutineExerciseQueries _reQueries;
-        private readonly iExeRouteByDate _reDate; 
+        private readonly iExeRouteByDate _reDate;
+        private readonly iExercisesByRoutine _exRou;
 
-        public RoutineExerciseController(iRoutineExerciseRepository reRepository, iRoutineExerciseQueries reQueries, iExeRouteByDate reDate)
+        public RoutineExerciseController(iRoutineExerciseRepository reRepository, iRoutineExerciseQueries reQueries, iExeRouteByDate reDate, iExercisesByRoutine exRou)
         {
             _reRepository = reRepository;
             _reQueries = reQueries;
             _reDate = reDate;
-
+            _exRou = exRou;
         }
 
 
@@ -68,11 +69,25 @@ namespace API_ChaFit.Controllers
             return Ok(result);
         }
 
+        /*
         [HttpGet]
         [Route("workout/{date}")]
         public async Task<ActionResult> GetByDate([FromRoute] DateTime date)
         {
             var result = await _reDate.GetByDate(date);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+        */
+
+        [HttpGet]
+        [Route("exercises/{routine_id}")]
+        public async Task<ActionResult> GetByRoutineId([FromRoute] int routine_id)
+        {
+            var result = await _exRou.GetByRoutineId(routine_id);
 
             if (result == null)
                 return NotFound();

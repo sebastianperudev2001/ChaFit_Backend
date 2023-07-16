@@ -59,6 +59,7 @@ namespace API_ChaFit
             builder.Services.AddTransient<iRoutineByUser, RoutineByUser>();
             builder.Services.AddTransient<iExeRouteByDate, ExeRouteByDate>();
             builder.Services.AddTransient<iStatByUserExer, StatByUserExer>();
+            builder.Services.AddTransient<iExercisesByRoutine, ExercisesByRoutine>();
 
 
 

@@ -17,10 +17,5 @@ namespace Model
         public string gender { get; set; }
         public decimal height { get; set; }
         public decimal weight { get; set; }
-
-
-
-
-
     }
 }

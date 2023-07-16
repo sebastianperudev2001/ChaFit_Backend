@@ -25,9 +25,9 @@ namespace Repository.StatRepository
             int result;
             var parameters = new DynamicParameters();
             parameters.Add("@Set", stat.gymSet);
-            parameters.Add("@Set", stat.gymSet);
-            parameters.Add("@Set", stat.gymSet);
-            parameters.Add("@Set", stat.gymSet);
+            parameters.Add("@Rep", stat.gymRep);
+            parameters.Add("@Weight", stat.weight);
+            parameters.Add("@Id", stat.routineExercise_id);
 
 
 

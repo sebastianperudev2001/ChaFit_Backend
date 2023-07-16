@@ -21,9 +21,5 @@ namespace ViewModel
 
         public DateTime dateWorkout { get; set; }
 
-
-
-
-
     }
 }
